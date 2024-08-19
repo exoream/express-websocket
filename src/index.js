@@ -10,15 +10,14 @@ expressWs(app);
 // Array to keep track of connected WebSocket clients
 const clients = new Map();
 
-// Middleware
-app.use(cors()); // Pastikan CORS diatur sebelum rute dan WebSocket handler
+app.use(cors());
 app.use(express.json());
 app.use("/", routes);
 
 app.get("/", (req, res) => {
   res.json({
     status: true,
-    message: "Welcome to the Anime API",
+    message: "Welcome to the chat app",
   });
 });
 
