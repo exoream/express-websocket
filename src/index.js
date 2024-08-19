@@ -1,5 +1,6 @@
 const express = require("express");
 const expressWs = require("express-ws");
+const cors = require("cors");
 const routes = require("./routes/route");
 const {
   handleMessage,
@@ -12,15 +13,15 @@ expressWs(app);
 const clients = new Map();
 
 app.use(express.json());
+app.use("/", routes);
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.json({
     status: true,
-    message: "Welcome to the chat application",
+    message: "Welcome to the Anime API",
   });
 });
-
-app.use("/", routes);
 
 app.ws("/chat", (ws, req) => {
   const sessionId = parseInt(req.query.sessionId);
