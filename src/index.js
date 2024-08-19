@@ -12,6 +12,14 @@ expressWs(app);
 const clients = new Map();
 
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.json({
+    status: true,
+    message: "Welcome to the chat application",
+  });
+});
+
 app.use("/", routes);
 
 app.ws("/chat", (ws, req) => {
